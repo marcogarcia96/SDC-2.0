@@ -104,24 +104,39 @@ module.exports = {
             } else {
               obj.default_style = true;
             }
+
             var arrayofphotos = [];
-            var arrayofskus = [];
-            for(var i = 0; i < Allphotos.length; i++ ){
+            var objofskus = {};
+
+            for(var i = 0; i < Allphotos.length; ){
               if(Allphotos[i].style_id === obj.style_id){
                 var hold = Allphotos.splice(i,1)
+                delete hold[0].photo_id
+                delete hold[0].style_id
                 arrayofphotos.push(hold[0])
+              }else{
+                i++
               }
             }
 
             for(var i = 0; i < Allskus.length; i++ ){
-              var hold = Allskus.splice(i,1)
-              arrayofskus.push(hold[0])
+              if(Allskus[i].style_id === obj.style_id){
+
             }
+            }
+
+            delete obj.product_id
             obj.photos = arrayofphotos
-            obj.skus = arrayofskus
+            // obj.skus = arrayofskus
 
           })
-          res.send(Allstyles)
+
+          var obj = {
+            product_id: req.params.product_id,
+            results: Allstyles
+          }
+
+          res.send(obj)
         })
       })
     })
