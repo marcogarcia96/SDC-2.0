@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const Controller = require('./Controller.js')
 
 app.get('/',(req,res)=>{
   res.send('welcome to Server Side Set up')
