@@ -121,13 +121,15 @@ module.exports = {
 
             for(var i = 0; i < Allskus.length; i++ ){
               if(Allskus[i].style_id === obj.style_id){
-
+                objofskus[Allskus[i].sku_id] = Allskus[i]
+                delete objofskus[Allskus[i].sku_id].style_id
+                delete objofskus[Allskus[i].sku_id].sku_id
             }
             }
 
             delete obj.product_id
             obj.photos = arrayofphotos
-            // obj.skus = arrayofskus
+            obj.skus = objofskus
 
           })
 
