@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  products:
+    build: server/
+    depends_on:
+      - 'database'
+    ports:
+      - '3000:3000'
+
+  database:
+    image:  mysql:8.0.23
+    restart: always
+    environment:
+      MYSQL_DATABASE: Product_DB
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    volumes:
+      - ./server/database/cleandata:/data
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
