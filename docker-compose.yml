@@ -2,7 +2,7 @@ version: '3'
 
 services:
   products:
-    build: server/
+    image: grip96/sdc-20_products:latest
     depends_on:
       - 'database'
     ports:
@@ -15,7 +15,7 @@ services:
       MYSQL_DATABASE: Product_DB
       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
     volumes:
-      - ./server/database/cleandata:/data
+      - ./home/database/cleandata:/data
       - db_data:/var/lib/mysql
 volumes:
   db_data:
